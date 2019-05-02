@@ -1,37 +1,73 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ListPerson from './ListPerson'
-import RemovePerson from './RemovePerson'
+import AddPerson from './AddPerson'
+import Swal from 'sweetalert2'
 
 const Welcome = () => {
     const Data = ({ nombre, apellido }) => <h1>Bienvenido {nombre} {apellido}...!</h1>;
 
     return (
-        <div className="h1">
-            <Data nombre="Javier" apellido="Avilés" />
+        <div>
+            <Data nombre="Edison" apellido="Avilés" />
+            <hr />
+            <br />
         </div>
     )
-}
+};
 
-const IndexPerson = () => {
+class IndexPerson extends React.Component {
     state = {
-        info: [
-            {
-                nombre: 'Maryuri',
-                apellido: 'Rivas',
-            },
-        ]
+        data: []
     }
-    const { info } = state
 
-    return (
-        <div className="jumbotron jumbotron-fluid">
-            <div className="container">
-                <Welcome />
-                <br /><br />
-                <ListPerson Information={info} RemovePerson_={RemovePerson} />
+    AddPersonHandle = dataPerson => {
+        this.setState({ data: [...this.state.data, dataPerson] })
+    }
+
+    RemovePersonHandle = index => {
+        const { data } = this.state;
+        Swal.fire({
+            title: 'Eliminar Registro',
+            text: "¿Estás seguro que deseas eliminar este registro?",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Si, eliminar',
+            cancelButtonText: 'Cancelar',
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.value) {
+                this.setState({
+                    data: data.filter((character, i) => {
+                        return i !== index;
+                    })
+                });
+
+                Swal.fire({
+                    position: 'top-end',
+                    title: 'Eliminado',
+                    text: 'El registro fue eliminado satisfactoriamente',
+                    type: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        })
+    }
+
+    render() {
+        const { data } = this.state
+
+        return (
+            <div className="jumbotron">
+                <div className="container">
+                    <Welcome />
+                    <AddPerson AddPersonHandle={this.AddPersonHandle} />
+                    <br />
+                    <ListPerson Information={data} RemovePersonHandle={this.RemovePersonHandle} />
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default IndexPerson

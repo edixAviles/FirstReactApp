@@ -7,8 +7,8 @@ const ListPerson = props => {
                 <td>{row.nombre}</td>
                 <td>{row.apellido}</td>
                 <td>
-                    <button type="button" className="btn btn-danger" onClick={() => props.RemovePerson_(index)}>
-                        Eliminar
+                    <button type="button" className="btn btn-danger" onClick={() => props.RemovePersonHandle(index)}>
+                        <i class="material-icons-sharp">delete</i>
                     </button>
                 </td>
             </tr>
