@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './bootstrap.min.css'
-import Container from './App'
+import IndexPerson from './views/persons/IndexPerson'
+import './css/bootstrap.min.css'
 
-ReactDOM.render(<Container />, document.getElementById('root'))
+ReactDOM.render(<IndexPerson />, document.getElementById('root'))
