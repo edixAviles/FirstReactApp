@@ -4,47 +4,49 @@ class AddPerson extends React.Component {
     constructor(props) {
         super(props)
 
-        this.initialState = {
+        this.state = {
             nombre: '',
-            apellido: '',
+            apellido: ''
         }
-
-        this.state = this.initialState
     }
 
-    handleChange = event => {
-        const { name, value } = event.target
-
+    onChangeValue = event => {
         this.setState({
-            [name]: value,
+            [event.target.name]: event.target.value,
         })
     }
 
-    submitPersonData = () => {
+    AddPersonLocal = () => {
         this.props.AddPersonHandle(this.state)
-        this.setState(this.initialState)
+        this.setState({
+            nombre: '',
+            apellido: ''
+        })
     }
 
     render() {
         const { nombre, apellido } = this.state;
+        const marginLeft = {
+            marginLeft: 10
+        };
 
         return (
             <form>
                 <div>
                     <span className="badge badge-pill badge-primary">1</span>
-                    <b className="">Por favor, ingresa los datos correspondientes:</b>
+                    <b style={marginLeft}>Por favor, ingresa los datos correspondientes:</b>
                 </div>
                 <br/>
                 <div className="form-group row">
-                    <label for="staticEmail" className="col-sm-1 col-form-label font-weight-bold">Nombre:</label>
+                    <label className="col-sm-1 col-form-label font-weight-bold">Nombre:</label>
                     <div className="col-sm-3">
-                        <input className="form-control" placeholder="Nombre" type="text" name="nombre" value={nombre} onChange={this.handleChange} />
+                        <input className="form-control" placeholder="Nombre" type="text" name="nombre" value={nombre} onChange={this.onChangeValue} />
                     </div>
-                    <label for="inputPassword" className="col-sm-1 col-form-label font-weight-bold">Apellido:</label>
+                    <label className="col-sm-1 col-form-label font-weight-bold">Apellido:</label>
                     <div className="col-sm-3">
-                        <input className="form-control" placeholder="Apellido" type="text" name="apellido" value={apellido} onChange={this.handleChange} />
+                        <input className="form-control" placeholder="Apellido" type="text" name="apellido" value={apellido} onChange={this.onChangeValue} />
                     </div>
-                    <button type="button" className="col-sm-1 btn btn-primary" onClick={this.submitPersonData}>Agregar</button>
+                    <button type="button" className="col-sm-1 btn btn-primary" onClick={this.AddPersonLocal}>Agregar</button>
                 </div>
                 <br/>
                 <hr/>

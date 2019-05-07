@@ -7,8 +7,13 @@ const ListPerson = props => {
                 <td>{row.nombre}</td>
                 <td>{row.apellido}</td>
                 <td>
+                    <button type="button" className="btn btn-info" onClick={() => props.UpdatePersonHandle(index)}>
+                    <i className="fas fa-edit"></i>
+                    </button>
+                </td>
+                <td>
                     <button type="button" className="btn btn-danger" onClick={() => props.RemovePersonHandle(index)}>
-                        <i class="material-icons-sharp">delete</i>
+                    <i className="fas fa-trash"></i>
                     </button>
                 </td>
             </tr>
@@ -21,6 +26,7 @@ const ListPerson = props => {
                 <tr>
                     <th>Nombre</th>
                     <th>Apellido</th>
+                    <th>Modificar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
