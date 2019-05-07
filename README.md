@@ -4,10 +4,8 @@ El proyecto presenta la realizacion de un CRUD, utilizando REACT.
 Actualmente dispone de:
 ### (C) Inserción de Registros
 ### (R) Lectura de Registros
-### `(U) "Aún en proyecto..."`
+### (U) Modificación de Registros
 ### (D) Eliminación de Registros
-
-
 
 ## Proximamente...
 ### Integración con `Redux`
